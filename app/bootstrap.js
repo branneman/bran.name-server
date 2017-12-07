@@ -3,18 +3,23 @@
 module.exports = factory
 module.exports['@singleton'] = true
 module.exports['@require'] = [
+  'electrolyte',
   'nunjucks',
   'lib/env',
   'lib/read',
-  'lib/http-server'
+  'lib/http2-server'
 ]
 
-async function factory (nunjucks, { parsed: env }, read, httpServer) {
+async function factory (IoC, nunjucks, { parsed: env }, read, httpServer) {
   nunjucks.configure(`${process.cwd()}/app/areas/`)
 
+  // Create content cache
+  await IoC.create('lib/content')
+
+  // Load HTTPS certificates
   const serverOptions = {
-    key: read(env.APP_SERVER_CERT_KEY),
-    cert: read(env.APP_SERVER_CERT_CERT)
+    key: read(env.SERVER_CERT_KEY),
+    cert: read(env.SERVER_CERT_CERT)
   }
 
   return () => httpServer.start(serverOptions)

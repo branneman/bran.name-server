@@ -35,6 +35,23 @@ function factory (mime) {
       })
       push.write(fileContents)
       push.end()
+    },
+
+    /**
+     * @param {http.ClientRequest} req
+     * @param {{ user: String, pass: String }} credentials
+     * @returns {Boolean}
+     */
+    isValidBasicAuth (req, credentials) {
+      if (!req.headers.authorization) {
+        return false
+      }
+
+      const credsStr = `${credentials.user}:${credentials.pass}`
+      const authStr = Buffer.from(credsStr).toString('base64')
+      const authHeader = `Basic ${authStr}`
+
+      return authHeader === req.headers.authorization
     }
 
   }

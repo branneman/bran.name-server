@@ -6,10 +6,11 @@ module.exports['@require'] = [
   'lib/read',
   'lib/http-helpers',
   'lib/render-view',
-  'areas/shared/layout/criticalcss'
+  'areas/shared/layout/criticalcss',
+  'lib/content'
 ]
 
-function factory (read, { sendHTML, push }, render, layout) {
+function factory (read, { sendHTML, push }, render, layout, content) {
   const criticalCSSurl = '/static/css/critical/homepage.css'
   const criticalCSS = read(`${process.cwd()}/app${criticalCSSurl}`)
 
@@ -21,7 +22,8 @@ function factory (read, { sendHTML, push }, render, layout) {
     const viewData = Object.assign({}, layout.baseViewData, {
       httpVersion: req.httpVersion,
       criticalCSSurl,
-      criticalCSS
+      criticalCSS,
+      articles: content.getEntries('article')
     })
 
     push(res, criticalCSSurl, criticalCSS)
