@@ -1,7 +1,8 @@
 {
   "version": "1.0.0",
   "name": "bran.name-server",
-  "description": "The sourcecode for the https://bran.name/ website (Node.js server implementation)",
+  "description":
+    "The sourcecode for the https://bran.name/ website (Node.js server implementation)",
   "author": "Bran van der Meer <branmovic@gmail.com> (http://bran.name/)",
   "license": "ISC",
   "repository": {
@@ -15,7 +16,8 @@
     "start": "node index.js",
     "test": "jest",
     "dev": "NODE_ENV=development npm start",
-    "codestyle": "prettier --write --single-quote --no-semi \"**/*.{md,css,scss,js,json}\""
+    "codestyle":
+      "prettier --write --single-quote --no-semi \"**/*.{md,css,scss,js,json}\""
   },
   "dependencies": {
     "contentful": "^5.0.2",

@@ -4,15 +4,14 @@ module.exports = factory
 module.exports['@singleton'] = true
 module.exports['@require'] = ['mime']
 
-function factory (mime) {
+function factory(mime) {
   return {
-
     /**
      * @param {http.ServerResponse} res
      * @param {Number} statusCode
      * @param {String} html
      */
-    sendHTML (res, statusCode, html) {
+    sendHTML(res, statusCode, html) {
       res.writeHead(statusCode, {
         'Content-Type': 'text/html; charset=UTF-8',
         'Content-Length': html.length
@@ -26,7 +25,7 @@ function factory (mime) {
      * @param {String} fileName
      * @param {String} fileContents
      */
-    push (res, fileName, fileContents) {
+    push(res, fileName, fileContents) {
       if (!res.push) return
       const push = res.push(fileName)
       push.writeHead(200, {
@@ -42,7 +41,7 @@ function factory (mime) {
      * @param {{ user: String, pass: String }} credentials
      * @returns {Boolean}
      */
-    isValidBasicAuth (req, credentials) {
+    isValidBasicAuth(req, credentials) {
       if (!req.headers.authorization) {
         return false
       }
@@ -53,6 +52,5 @@ function factory (mime) {
 
       return authHeader === req.headers.authorization
     }
-
   }
 }

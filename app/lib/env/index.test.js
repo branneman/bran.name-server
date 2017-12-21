@@ -23,34 +23,27 @@ describe('env', () => {
     const { parseEnvFile } = factory({}, () => '')
 
     it('transforms into object', () => {
-      const filecontents =
-        `abc=def\n` +
-        `foo=bar`
+      const filecontents = `abc=def\n` + `foo=bar`
       expect(parseEnvFile(filecontents)).toEqual({
-        'abc': 'def',
-        'foo': 'bar'
+        abc: 'def',
+        foo: 'bar'
       })
     })
 
     it('trims spaces', () => {
-      const filecontents =
-        `abc= def \n` +
-        ` foo =bar`
+      const filecontents = `abc= def \n` + ` foo =bar`
       expect(parseEnvFile(filecontents)).toEqual({
-        'abc': 'def',
-        'foo': 'bar'
+        abc: 'def',
+        foo: 'bar'
       })
     })
 
     it('splits on cross-platform newlines', () => {
-      const filecontents =
-        `win=dows\r\n` +
-        `abc=def\n` +
-        `foo =bar`
+      const filecontents = `win=dows\r\n` + `abc=def\n` + `foo =bar`
       expect(parseEnvFile(filecontents)).toEqual({
-        'win': 'dows',
-        'abc': 'def',
-        'foo': 'bar'
+        win: 'dows',
+        abc: 'def',
+        foo: 'bar'
       })
     })
   })

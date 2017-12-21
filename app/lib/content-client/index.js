@@ -2,12 +2,9 @@
 
 module.exports = factory
 module.exports['@singleton'] = true
-module.exports['@require'] = [
-  'contentful',
-  'lib/env'
-]
+module.exports['@require'] = ['contentful', 'lib/env']
 
-function factory (contentful, { parsed: env }) {
+function factory(contentful, { parsed: env }) {
   const client = contentful.createClient({
     host: env.CONTENTFUL_HOST,
     space: env.CONTENTFUL_SPACE,
@@ -15,15 +12,16 @@ function factory (contentful, { parsed: env }) {
   })
 
   return {
-
-    async getAllContent () {
+    async getAllContent() {
       const content = {
         _contentTypeIds: await getContentTypeIds(client)
       }
 
       for (const contentTypeId of content._contentTypeIds) {
-        content[contentTypeId] =
-          await getEntriesByContentTypeId(client, contentTypeId)
+        content[contentTypeId] = await getEntriesByContentTypeId(
+          client,
+          contentTypeId
+        )
       }
 
       return content
@@ -35,7 +33,7 @@ function factory (contentful, { parsed: env }) {
  * @param {ContentfulClientAPI} client
  * @returns {Promise<Array<String>>}
  */
-async function getContentTypeIds (client) {
+async function getContentTypeIds(client) {
   return (await client.getContentTypes()).items
 }
 
@@ -44,6 +42,6 @@ async function getContentTypeIds (client) {
  * @param {String} contentTypeId
  * @returns {Promise<Array<Object>>}
  */
-async function getEntriesByContentTypeId (client, contentTypeId) {
+async function getEntriesByContentTypeId(client, contentTypeId) {
   return (await client.getEntries({ content_type: contentTypeId })).items
 }

@@ -2,10 +2,7 @@
 
 module.exports = factory
 module.exports['@singleton'] = true
-module.exports['@require'] = [
-  'url',
-  'send'
-]
+module.exports['@require'] = ['url', 'send']
 
 const config = {
   root: `${process.cwd()}/app/`,
@@ -15,9 +12,8 @@ const config = {
   lastModified: false
 }
 
-function factory ({ parse }, send) {
+function factory({ parse }, send) {
   return {
-
     /**
      * @param {http.ClientRequest} req
      * @returns {Boolean}
@@ -35,6 +31,5 @@ function factory ({ parse }, send) {
       const path = parse(req.url).pathname
       send(req, path, config).pipe(res)
     }
-
   }
 }

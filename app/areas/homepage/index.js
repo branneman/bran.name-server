@@ -10,7 +10,7 @@ module.exports['@require'] = [
   'lib/content'
 ]
 
-function factory (read, { sendHTML, push }, render, layout, content) {
+function factory(read, { sendHTML, push }, render, layout, content) {
   const criticalCSSurl = '/static/css/critical/homepage.css'
   const criticalCSS = read(`${process.cwd()}/app${criticalCSSurl}`)
 

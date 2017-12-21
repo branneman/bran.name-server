@@ -10,7 +10,7 @@ module.exports['@require'] = [
   'lib/http2-server'
 ]
 
-async function factory (IoC, nunjucks, { parsed: env }, read, httpServer) {
+async function factory(IoC, nunjucks, { parsed: env }, read, httpServer) {
   nunjucks.configure(`${process.cwd()}/app/areas/`)
 
   // Create content cache

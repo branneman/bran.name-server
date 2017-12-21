@@ -2,12 +2,9 @@
 
 module.exports = factory
 module.exports['@singleton'] = true
-module.exports['@require'] = [
-  'package.json',
-  'lib/read'
-]
+module.exports['@require'] = ['package.json', 'lib/read']
 
-function factory ({ env: defaultEnv }, read) {
+function factory({ env: defaultEnv }, read) {
   const dotenv = parseEnvFile(read(`${process.cwd()}/.env`))
   const parsed = Object.assign({}, defaultEnv, dotenv, process.env)
 
@@ -23,7 +20,7 @@ function factory ({ env: defaultEnv }, read) {
  * @param {String|Buffer} filecontents
  * @returns {Object}
  */
-function parseEnvFile (filecontents) {
+function parseEnvFile(filecontents) {
   return filecontents
     .split(/\r?\n/)
     .filter(line => line.indexOf('=') !== -1)
@@ -37,19 +34,16 @@ function parseEnvFile (filecontents) {
  * @param {String} str
  * @returns {[String, String]}
  */
-function splitPairs (str) {
+function splitPairs(str) {
   const pos = str.indexOf('=')
-  return [
-    str.substr(0, pos),
-    str.substr(pos + 1)
-  ]
+  return [str.substr(0, pos), str.substr(pos + 1)]
 }
 
 /**
  * @param {String} str
  * @returns {String}
  */
-function trimQuotes (str) {
+function trimQuotes(str) {
   const first = str[0]
   const last = str[str.length - 1]
   const hasSingle = first === `'` && last === `'`
@@ -66,7 +60,7 @@ function trimQuotes (str) {
  * @param {[*, *]} tuple
  * @returns {Object}
  */
-function tupleToObjectPredicate (acc, [ key, val ]) {
+function tupleToObjectPredicate(acc, [key, val]) {
   acc[key] = val
   return acc
 }

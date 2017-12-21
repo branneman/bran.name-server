@@ -9,19 +9,23 @@ module.exports['@require'] = [
   'areas/error'
 ]
 
-function factory ({ parsed: env }, content, { sendHTML, isValidBasicAuth }, { unauthorized, internalServerError }) {
+function factory(
+  { parsed: env },
+  content,
+  { sendHTML, isValidBasicAuth },
+  { unauthorized, internalServerError }
+) {
   const credentials = {
     user: env.CONTENTFUL_HOOK_AUTH_USER,
     pass: env.CONTENTFUL_HOOK_AUTH_PASS
   }
 
   return {
-
     /**
      * @param {http.ClientRequest} req
      * @param {http.ServerResponse} res
      */
-    async contentHookAction (req, res) {
+    async contentHookAction(req, res) {
       if (!isValidBasicAuth(req, credentials)) {
         return unauthorized(req, res)
       }
@@ -33,6 +37,5 @@ function factory ({ parsed: env }, content, { sendHTML, isValidBasicAuth }, { un
         return internalServerError(req, res, err)
       }
     }
-
   }
 }

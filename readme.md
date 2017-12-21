@@ -1,11 +1,14 @@
 # bran.name - Node.js server implementation
 
 ## Features
-- Critical CSS via HTTP/2 Server Push
--
+
+* Critical CSS via HTTP/2 Server Push
+*
 
 ## Setup
+
 First you need to clone the repo and install it's dependencies
+
 ```
 git clone git@github.com:branneman/bran.name-server.git
 cd bran.name-server
@@ -13,12 +16,14 @@ npm install
 ```
 
 Secondly you'll need to generate a self-signed SSL certificate with OpenSSL (you'll need to provide some dummy details):
+
 ```
 mkdir cert
 openssl req -x509 -newkey rsa:4096 -keyout cert/key.pem -out cert/cert.pem -days 365 -nodes
 ```
 
 Then you'll need to create a `.env` file with your Contentful configuration:
+
 ```
 CONTENTFUL_HOST="cdn.contentful.com"
 CONTENTFUL_SPACE=""
@@ -28,6 +33,7 @@ CONTENTFUL_HOOK_AUTH_PASS=""
 ```
 
 Lastly you can start your server:
+
 ```
 npm start
 ```

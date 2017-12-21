@@ -13,7 +13,7 @@ module.exports = factory
  * }} Article
  */
 
-function factory () {
+function factory() {
   /**
    * @param {Object} article
    * @returns {Article}

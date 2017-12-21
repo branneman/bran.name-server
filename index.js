@@ -6,7 +6,11 @@ process.cwd(__dirname)
 // Enforce the right Node.js version
 const version = require('./package.json').engines.node
 if (process.version.substr(1) !== version) {
-  throw new Error(`Node.js version mismatch!\n Required v${version}\n Detected ${process.version}`)
+  throw new Error(
+    `Node.js version mismatch!\n Required v${version}\n Detected ${
+      process.version
+    }`
+  )
 }
 
 // Configure DI/IoC container

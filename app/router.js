@@ -10,7 +10,7 @@ module.exports['@require'] = [
   'areas/error'
 ]
 
-function factory (middleware, statics, homepage, hooks, error) {
+function factory(middleware, statics, homepage, hooks, error) {
   const get = url => req => req.url === url
 
   const app = middleware()
@@ -25,8 +25,7 @@ function factory (middleware, statics, homepage, hooks, error) {
    */
   return (req, res) => {
     try {
-      app.run(req, res)
-        .catch(err => error.internalServerError(req, res, err))
+      app.run(req, res).catch(err => error.internalServerError(req, res, err))
     } catch (err) {
       error.internalServerError(req, res, err)
     }
