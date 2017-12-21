@@ -11,8 +11,8 @@ if (process.version.substr(1) !== version) {
 
 // Configure DI/IoC container
 const IoC = require('electrolyte')
-IoC.use(IoC.dir('.'))
-IoC.use(IoC.dir('app'))
+const loader = require('electrolyte-assembly-mapper')('.ioc-mapper.json')
+IoC.use(loader('.', 'app'))
 IoC.use(IoC.node_modules())
 
 // Start app
@@ -21,5 +21,5 @@ IoC.create('bootstrap')
   .catch(err => {
     console.log(err.message)
     console.log(err.stack)
-    return process.exit(-1)
+    process.exit(-1)
   })

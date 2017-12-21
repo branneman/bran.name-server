@@ -9,5 +9,6 @@ package-lock.json
 yarn.lock
 
 # App
-.env
+.env*
+.ioc-mapper.json
 cert

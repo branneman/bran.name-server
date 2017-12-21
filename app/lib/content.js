@@ -3,7 +3,7 @@
 module.exports = factory
 module.exports['@singleton'] = true
 module.exports['@require'] = [
-  'lib/content-client/stub',
+  'lib/content-client',
   'models'
 ]
 
