@@ -10,7 +10,7 @@
     "url": "git+https://github.com/branneman/bran.name-server.git"
   },
   "engines": {
-    "node": "8.9.1"
+    "node": "8.9.3"
   },
   "scripts": {
     "start": "node index.js",

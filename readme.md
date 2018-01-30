@@ -1,10 +1,5 @@
 # bran.name - Node.js server implementation
 
-## Features
-
-* Critical CSS via HTTP/2 Server Push
-*
-
 ## Setup
 
 First you need to clone the repo and install it's dependencies
