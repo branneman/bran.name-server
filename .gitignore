@@ -12,3 +12,7 @@ yarn.lock
 .env*
 .ioc-mapper.json
 cert
+
+# Operating system
+.DS_Store
+Thumbs.db
