@@ -34,7 +34,7 @@ function factory(contentful, { parsed: env }) {
  * @returns {Promise<Array<String>>}
  */
 async function getContentTypeIds(client) {
-  return (await client.getContentTypes()).items
+  return (await client.getContentTypes()).items.map(ct => ct.sys.id)
 }
 
 /**
